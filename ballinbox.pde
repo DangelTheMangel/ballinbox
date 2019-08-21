@@ -26,6 +26,9 @@ void setup () {
 void draw () {
   // her sætter jeg farven på bagrunden og laver den være gang jeg tenger skærmen
   background(0);
+  
+  // sætter frameraten på animation (sætter den på 60)
+  frameRate(60);
 
   // dette rykker bolden
   ballX += xSpeed;
@@ -49,22 +52,26 @@ void draw () {
     ySpeed *= -1;
   } 
 
-  if (ballY< boxY){
+  if (ballY< boxY) {
     ballY=boxY+10;
   }
 
 
   // dette er farven og hvor boxen bliver tegnet være gang den tegner skærmen
-  fill(240, 0, 0);
+  stroke(204, 102, 0);
+  fill(0, 0, 0);
   rect(boxX, boxY, boxSize, boxSize);
   // detter er farven og hvor bloden bliver tegnet været skærm
+  noStroke();
   fill(250);
   ellipse(ballX, ballY, rad, rad);
-  
-if (boxSize < 40 || boxSize > 550 ){
-   a *= -1;
-   b *= -1;
-}
 
-println(boxSize);
+  // dette sørger for at den kan køre i loop ved at sørge for boxen ikke bliver mindre end bolden og meget større end vinduet
+  if (boxSize < 40 || boxSize > 550 ) {
+    a *= -1;
+    b *= -1;
+  }
+
+  //dette hjælper mig med at kunne holde styr på mine variabler 
+  println("boxens info:", "box size", boxSize, "cordinates:", "(", boxX, ".", boxY, ")", "boldens info:", "cordinates:", "(", ballX, ".", ballY, ")", "boldens xSpeed:", xSpeed, "boldens ySpeed:", ySpeed);
 }
