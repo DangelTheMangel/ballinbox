@@ -11,10 +11,13 @@ float rad= 24;
 float boxSize = 500;
 
 // dette er farten på bolden
-float xSpeed = 5, ySpeed = 5;
+float xSpeed = 6, ySpeed = 5;
 
+// dette er det der boxen holder sig i midten
+float a = 0.5;
 
-
+//dette gøre boxen mindre/ større
+float b = 1;
 void setup () {
   // her sætter jeg størrelsen af vinduet
   size(500, 500);
@@ -28,9 +31,9 @@ void draw () {
   ballX += xSpeed;
 
   // dette for boxen til at blive mindre
-  boxX += 1;
-  boxY += 1;
-  boxSize -= 2;
+  boxX += a;
+  boxY += a;
+  boxSize -= b;
 
   // dette holder bolden inden for boxen
   if (ballX> boxSize + boxX || ballX< boxX) {
@@ -46,7 +49,9 @@ void draw () {
     ySpeed *= -1;
   } 
 
-  if (ballY< boxY) ballY=boxY+10;
+  if (ballY< boxY){
+    ballY=boxY+10;
+  }
 
 
   // dette er farven og hvor boxen bliver tegnet være gang den tegner skærmen
@@ -55,4 +60,11 @@ void draw () {
   // detter er farven og hvor bloden bliver tegnet været skærm
   fill(250);
   ellipse(ballX, ballY, rad, rad);
+  
+if (boxSize < 40 || boxSize > 550 ){
+   a *= -1;
+   b *= -1;
+}
+
+println(boxSize);
 }
