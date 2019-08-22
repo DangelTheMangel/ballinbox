@@ -46,6 +46,9 @@ void draw () {
   if (ballX< boxX) {
     ballX=boxX+10;
   } 
+    if (ballX> boxSize + boxX) {
+    ballX=boxSize + boxX -10;
+  } 
 
   ballY += ySpeed;
   if (ballY> boxSize + boxY ||ballY< boxY) {
@@ -56,6 +59,9 @@ void draw () {
     ballY=boxY+10;
   }
 
+if (ballY > boxSize + boxY) {
+   ballY -= 10;
+  }
 
   // dette er farven og hvor boxen bliver tegnet være gang den tegner skærmen
   stroke(204, 102, 0);
