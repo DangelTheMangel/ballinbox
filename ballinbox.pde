@@ -1,18 +1,23 @@
 // dette er variablerne til cordinaterne hos bolden
-float ballX = 0, ballY = 0;
+int ballX = 0, ballY = 0;
 
 // dette er boxen cordinater
-float boxX = 0, boxY = 0;
+int boxX = 0, boxY = 0;
 
 // dette er radiusen på bolden
-float rad= 24;
+int rad= 24;
 
 // dette er boxen størrelse
-float boxSize = 500;
+int boxSize = 500;
 
 // dette er farten på bolden
-float xSpeed = 5, ySpeed = 5;
+int xSpeed = 6, ySpeed = 5;
 
+// dette er det der boxen holder sig i midten
+int a = 1;
+
+//dette gøre boxen mindre/ større
+int b = 2;
 
 
 void setup () {
@@ -21,24 +26,27 @@ void setup () {
 }
 
 void draw () {
-  // her sætter jeg farven på bagrunden og laver den være gang jeg tenger skærmen
+  // her sætter jeg farven på bagrunden og laver den hver gang jeg tegner skærmen
   background(0);
 
   // dette rykker bolden
   ballX += xSpeed;
 
-  // dette for boxen til at blive mindre
-  boxX += 1;
-  boxY += 1;
-  boxSize -= 2;
+  // dette får boxen til at blive mindre
+  boxX += a;
+  boxY += a;
+  boxSize -= b;
 
   // dette holder bolden inden for boxen
   if (ballX> boxSize + boxX || ballX< boxX) {
     xSpeed *= -1;
   }
 
+  if (ballX> boxSize + boxX) {
+    ballX -= 10;
+  }
   if (ballX< boxX) {
-    ballX=boxX+10;
+    ballX += 10;
   } 
 
   ballY += ySpeed;
@@ -46,13 +54,28 @@ void draw () {
     ySpeed *= -1;
   } 
 
-  if (ballY< boxY) ballY=boxY+10;
+  if (ballY> boxSize + boxY) {
+    ballY -= 10;
+  }
+  if (ballY< boxY) {
+    ballY += 10;
+  }
+
+
 
 
   // dette er farven og hvor boxen bliver tegnet være gang den tegner skærmen
-  fill(240, 0, 0);
+  fill(0);
+  stroke(204, 102, 0);
   rect(boxX, boxY, boxSize, boxSize);
   // detter er farven og hvor bloden bliver tegnet været skærm
   fill(250);
+  noStroke();
   ellipse(ballX, ballY, rad, rad);
+
+  //gøre at boxen holder sin størrelse 
+  if (boxSize < 40 || boxSize > 550 ) {
+    a *= -1;
+    b *= -1;
+  }
 }
